@@ -30,8 +30,17 @@ class Bookmarks
         end  
         result = connection.exec("INSERT INTO bookmarks (title, url) VALUES('#{title}', '#{url}') RETURNING id, url, title") 
         Bookmarks.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
+    end  
+
+    def delete(id:) 
+        if ENV['ENVIRONMENT'] == 'test'   
+            connection = PG.connect(dbname: 'Bookmark_manager_test')
+        else  
+            connection = PG.connect(dbname: 'Bookmark_manager')
+        end    
+        connection.exec("DELETE from bookmarks WHERE id = #{id}") 
+
     end 
 end 
 
 
-#11 Wrapping Database data in program objects 
