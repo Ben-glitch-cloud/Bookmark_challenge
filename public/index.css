@@ -44,4 +44,22 @@ body {
     border-radius: 20px; 
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
     border: 1px black solid;
+} 
+
+#edit {
+    background-color: white; 
+    margin: 2px; 
+    font-size: 12px; 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    border-radius: 25px; 
+    border: none;
+} 
+
+#delete {
+    background-color: white; 
+    margin: 2px; 
+    font-size: 12px; 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    border-radius: 25px; 
+    border: none;
 }

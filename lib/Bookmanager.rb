@@ -19,7 +19,7 @@ class Bookmarks
             result = connection.exec('SELECT * FROM bookmarks')   
             result.map do |bookmarks|
                 Bookmarks.new(id: bookmarks['id'], title: bookmarks['title'], url: bookmarks['url'])
-            end
+        end
     end 
 
     def create(url:, title:)
