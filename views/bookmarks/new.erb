@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link href="./new.css" rel="stylesheet" type="text/css">
     <title>Document</title>
 </head>
-    <body>
-        <form action="/new_bookmarks" method="post"> 
-            <input type="text" name="url"> 
-            <input type="submit" value="Submit">
-        </form>
+    <body> 
+        <div class="header"> 
+            <div id="header_item">   
+                <a href="/">Back</a>
+            </div>
+       </div> 
+        <div class="main">
+            <form action="/new_bookmarks" method="post">  
+            <div class="main_item">
+                <input type="text" name="title">   
+            </div> 
+            <div class="main_item">
+                <input type="text" name="url"> 
+            </div> 
+            <div class="main_item">
+                <input id="button" type="submit" value="Submit">  
+            </div>
+            </form>  
+        </div>
     </body>
 </html>

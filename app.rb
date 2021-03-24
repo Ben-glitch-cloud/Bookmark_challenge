@@ -5,7 +5,7 @@ class BookmarkManager < Sinatra::Base
 
     get '/' do 
         bookmarks = Bookmarks.new 
-            @bookmarks = bookmarks.stored
+        @bookmarks = bookmarks.stored
         erb :'bookmarks/index'
     end  
 
@@ -14,8 +14,9 @@ class BookmarkManager < Sinatra::Base
     end 
 
     post '/new_bookmarks' do
-        p params 
-        p "This param will be add to the database table"
+        bookmarks = Bookmarks.new  
+        bookmarks.create(url: params[:url], title: params[:title]) 
+        redirect '/'
     end
 
     run! if app_file == $0

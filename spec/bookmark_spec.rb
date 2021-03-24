@@ -1,5 +1,5 @@
 require './lib/Bookmanager'  
-require 'pg'
+# require 'pg'
 
 describe Bookmarks do
     describe 'stored' do
@@ -14,6 +14,14 @@ describe Bookmarks do
             expect(bookmarks.stored).to include("http://www.askjeeves.com")
             expect(bookmarks.stored).to include("http://www.twitter.com")
             expect(bookmarks.stored).to include("http://www.google.com")
+        end
+    end 
+
+    describe 'create' do
+        it 'another bookmark' do
+            bookmarks = Bookmarks.new 
+            bookmarks.create(url: 'http://www.testbookmark.com')
+            expect(bookmarks.stored).to include 'http://www.testbookmark.com'
         end
     end
 end

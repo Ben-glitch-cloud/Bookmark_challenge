@@ -1,6 +1,15 @@
 require 'pg'
 
-class Bookmarks
+class Bookmarks 
+
+    attr_reader :id, :title, :url
+
+    def initialize(id: nil, title: nil, url: nil) #<-- nil fixed this issue with ArgumentError - missing keywords:
+        @id = id
+        @title = title 
+        @url = url 
+    end 
+
     def stored 
         if ENV['ENVIRONMENT'] == 'test'
             connection = PG.connect(dbname: 'Bookmark_manager_test')  
@@ -8,11 +17,21 @@ class Bookmarks
             connection = PG.connect(dbname: 'Bookmark_manager')
         end 
             result = connection.exec('SELECT * FROM bookmarks')   
-            result.map { |bookmark| bookmark['url'] }
-    end
+            result.map do |bookmarks|
+                Bookmarks.new(id: bookmarks['id'], title: bookmarks['title'], url: bookmarks['url'])
+            end
+    end 
+
+    def create(url:, title:)
+        if ENV['ENVIRONMENT'] == 'test'
+            connection = PG.connect(dbname: 'Bookmark_manager_test')  
+        else   
+            connection = PG.connect(dbname: 'Bookmark_manager')
+        end  
+        result = connection.exec("INSERT INTO bookmarks (title, url) VALUES('#{title}', '#{url}') RETURNING id, url, title") 
+        Bookmarks.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
+    end 
 end 
 
 
-#result.each <-- would tack result and covert it into a hash  
-        #find out why result terns into a hash. 
-        # result.each { |bookmarks| p bookmarks}
+#11 Wrapping Database data in program objects 
